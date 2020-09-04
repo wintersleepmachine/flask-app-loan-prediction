@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+</head>
+
+<body style="color:rgb(215, 231, 233); zoom: 0.88;">
+ <div class="login">
+  <h1 style="font-size: 2rem; padding-bottom: none; text-decoration: underline; ">Loan Predictor</h1>
+  <br/>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post" class='control'>
+    
+        <label for="Gender">Choose Gender:</label> 
+        <select id="cars" name="Gender" class='select' required>
+          <option value="">Choose Gender</option>
+          <option value='Male'>Male</option>
+          <option value='Female'>Female</option>
+        </select>
+
+        <br/>
+        <br/>
+
+        <label for="Married">Marrital Status:</label>
+        <select id="dep" name="Married", class='select' required>
+          <option value="">Choose Marrital Status</option>
+          <option value='No'>No</option>
+          <option value='Yes'>Yes</option>
+        </select>
+        <br/>
+        <br/>
+
+
+        <label for="Dependents" >Dependents:</label>
+        <select id="dep" name="Dependents", class='select' required>
+          <option value="">Choose Dependents</option>
+          <option value='0'>0</option>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3+'>3+</option>
+        </select>
+
+        <br/>
+        <br/>
+
+        <label for="Education">Education Status:</label>
+        <select id="dep" name="Education", class='select' required>
+          <option value="">Choose Education</option>
+          <option value='Graduate'>Graduate</option>
+          <option value='Not Graduate'>Not Graduate</option>
+        </select>
+
+        <br/>
+        <br/>
+
+        <label for="Self_Employed">Self Employed:</label>
+        <select id="dep" name="Self_Employed", class='select' required>
+          <option value="">Choose Employment</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        <br/>
+        <br/>
+      <input type="number" name="ApplicantIncome" placeholder="Applicant Income" required="required" />
+      <input type="number" name="CoapplicantIncome" placeholder="Coapplicant Income (0 if N/A)" required="required" />
+      <input type="number" name="LoanAmount" placeholder="Loan Amount" required="required" />
+      <br/>
+      <br/>
+      <label for="Loan_Amount_Term">Loan Amount Term:</label>
+        <select id="dep" name="Loan_Amount_Term", class='select' required>
+          <option value="">Choose Term</option>
+          <option value=36>3 Months</option>
+          <option value=180>6 Months</option>
+          <option value=360>1 Year</option>
+          <option value=720>2 Year</option>
+        </select>
+      <br/>
+      <label for="Credit_History">Credit History:</label>
+        <select id="dep" name="Credit_History", class='select' required style="margin-top:0.3em; margin-bottom: 0.3em"> 
+          <option value="">Choose Credit History</option>
+          <option value=1>Yes</option>
+          <option value=0>No</option>
+        </select>
+        <br/>
+        <label for="Property_Area">Property Area:</label>
+        <select id="dep" name="Property_Area", class='select' required>
+          <option value="">Choose Property</option>
+          <option value='Semiurban'>Semi-Urban</option>
+          <option value='Urban'>Urban</option>
+          <option value='Rural'>Rural</option>
+        </select>
+        <br/>
+      <button type="submit" class="btn btn-primary btn-block btn-large" style="margin-top: 1em;">Predict</button>
+    </form>
+    <br/>
+
+    {% if prediction_text %}
+      {{ prediction_text }}
+      <br/>
+      <a href='/'><button class="btn btn-small" style="background-color: rgb(212, 185, 185);">Clear</button></a>
+    {%endif%}
+ 
+
+ </div>
+
+</body>
+</html>
